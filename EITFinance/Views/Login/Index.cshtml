@@ -1,0 +1,85 @@
+﻿@model EITFinance.Models.Login
+@using System.Web.Optimization
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Login";
+}
+
+@section ScriptsLogin
+    {
+    <script>
+        $("#id_authenticate").submit(function(e) {
+            Loader();
+        });
+
+        function Loader() {
+            Swal.fire({
+                title: 'Please Wait !',
+                html: 'Authentication is in progress...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                },
+            });
+        }
+
+        function errorAlert() {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Authentication Failed. Pleasy Try Again.',
+                type: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK!',
+                allowOutsideClick: false
+            });
+        }
+    </script>
+}
+
+
+
+    @using (Html.BeginForm("Authenticate", "Login", FormMethod.Post, new { id = "id_authenticate" }))
+{
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <h3 class="text-center text-info">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            @Html.EditorFor(model => model.Username, new {id = "txt_username",  htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            @Html.EditorFor(model => model.Password, new {id = "txt_password", htmlAttributes = new { @class = "form-control" , @type = "password" } })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.successStatus == false)
+{
+    @section ScriptsLoginViewbag {
+    <script>
+        errorAlert();
+    </script>
+    }
+}
+
+
+
+
+
+
+
+
+
+

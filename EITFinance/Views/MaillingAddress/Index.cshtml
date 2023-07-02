@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Mailling Address";
+}
+
+<script src="~/js/billingSPOC.js"></script>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Upload Mailling List</h3>
+        <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-begin="Loader('Data Uploading...')" data-ajax-complete="mailAddressFileUploadComplete" data-ajax-success="mailAddressUploadSuccess" asp-action="uploadMaillingAddresses" asp-controller="MaillingAddress">
+            <div class="form-group files">
+                <label>Upload Your File :</label>
+                <input type="file" name="file" class="form-control">
+            </div>
+            <div class="row">
+                <pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Max File Size : 10 MB]</label></pre><pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Supported File Format : .xlsx]</label></pre>
+            </div>
+            <button type="submit" class="btn btn-info btn-md">Upload</button>
+        </form>
+    </div>
+
+</div>

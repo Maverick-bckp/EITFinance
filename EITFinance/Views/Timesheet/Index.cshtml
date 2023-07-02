@@ -1,0 +1,32 @@
+﻿@model EITFinance.Models.Common.ViewModel
+
+<script src="~/js/billingSPOC.js"></script>
+
+@{
+    <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-begin="Loader('Data Uploading...')" data-ajax-complete="billingFileUploadComplete" data-ajax-success="billingFileUploadSuccess" asp-action="UploadInvoiceFile" asp-controller="Timesheet">
+        <div class="form-group">
+            <h5>Select Financial Year :</h5>
+            <select asp-for="@Model.FiscalYear.fin_year_text" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfFiscalYear,"fin_year_text","fin_year_text"))"></select>
+        </div>
+        <div class="form-group">
+            <h5>Select Client :</h5>
+            <select asp-for="@Model.ClientMaster.ClientNames" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfClientMaster,"ClientNames","ClientNames"))"></select>
+        </div>
+        <div class="form-group">
+            <h5>Select Month Year :</h5>
+            <select asp-for="@Model.monthYear.month" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfMonthYear,"month","month"))"></select>
+        </div>
+        <div class="form-group">
+            <div class="form-group files">
+                <h5>Upload Your File :</h5>
+                <input type="file" name="file" class="form-control">
+            </div>
+            <div class="row">
+                <pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Max File Size : 10 MB]</label></pre><pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Supported File Format : .xlsx]</label></pre>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info btn-md">Upload</button>
+        </div>
+    </form>
+}

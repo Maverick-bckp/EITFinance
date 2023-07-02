@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Unbilled Revenue Follow-Up";
+}
+
+<script src="~/js/billingSPOC.js"></script>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Upload Unbilled Revenue Log</h3>
+        <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-begin="Loader('Data Uploading...')" data-ajax-complete="billingFileUploadComplete" data-ajax-success="billingFileUploadSuccess" asp-action="UploadUnbilledRevenueFile" asp-controller="UnbilledRevenue">
+            <div class="form-group files">
+                              <label>Upload Your File :</label>
+                              <input type="file" name="file" class="form-control">
+            </div>
+            <div class="row">
+                <pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Max File Size : 10 MB]</label></pre><pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Supported File Format : .xlsx]</label></pre>
+            </div>
+            <button type="submit" class="btn btn-info btn-md">Upload</button>
+        </form>
+        <br />
+        <h3>Upload Mailing List</h3>
+        <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-begin="Loader('Data Uploading...')" data-ajax-complete="billingFileUploadComplete" data-ajax-success="billingFileUploadSuccess" asp-action="UploadMailingList" asp-controller="UnbilledRevenue">
+            <div class="form-group files">
+                                <label>Upload Your File :</label>
+                                <input type="file" name="file" class="form-control">
+            </div>
+            <div class="row">
+                <pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Max File Size : 10 MB]</label></pre><pre style="color: crimson;font-weight: 500;"><label>&nbsp;[Supported File Format : .xlsx]</label></pre>
+            </div>
+            <button type="submit" class="btn btn-info btn-md">Upload</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-begin="Loader('Sending Mail...')" data-ajax-complete="" data-ajax-success="sendBillingMailSuccess" asp-action="sendUnbilledRevenueDetailsMail" asp-controller="UnbilledRevenue">
+            <button type="submit" class="btn btn-outline-danger btn-md" style="float:right">Send Mail</button>
+        </form>
+    </div>
+
+
+
+</div>
+
